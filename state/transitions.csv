@@ -1,0 +1,64 @@
+document,from,event,to,roles,condition,system_action,kind,rule
+sales-order,Request,confirm order,Open,Sales staff,"customer, lines and prices complete; the contract is not on credit hold",order number assigned; fulfilment can start,allowed,
+sales-order,Request,confirm with credit release,Open,Chief accountant,the contract is on credit hold; a reason is recorded,order number assigned; the release is logged,allowed,R10
+sales-order,Request,cancel,Cancelled,Sales staff,,kept as a cancelled request,allowed,R1
+sales-order,Open,send to logistics,With logistics,Sales staff,a salesperson is assigned,sales editing locks; logistics sees the order,allowed,R6
+sales-order,Open,cancel,Cancelled,Sales staff; Sales manager,,flag only; nothing is deleted,allowed,R1
+sales-order,With logistics,request materials,In production,Logistics coordinator,a production plan exists,material request raised for the workshop,allowed,
+sales-order,With logistics,plan delivery from stock,Receiving and shipping,Logistics coordinator,finished goods already in stock,delivery trips planned,allowed,
+sales-order,With logistics,cancel,Cancelled,Sales manager,,flag only; nothing is deleted,allowed,R1
+sales-order,In production,receive finished goods,Receiving and shipping,Warehouse keeper,,stock increases; delivery trips can be planned,allowed,
+sales-order,In production,close as not completed,Not completed,Sales manager,,stock already received stays valid; open demand is dropped,allowed,R3
+sales-order,Receiving and shipping,last trip delivered,Completed,System,every trip is Delivered or Returned,order and its trips freeze,allowed,R4
+sales-order,Receiving and shipping,close as not completed,Not completed,Sales manager,,stock already received stays valid; undelivered lines are dropped,allowed,R3
+sales-order,Request,confirm on credit hold,,,The customer is over its credit limit or overdue. The chief accountant must release the order.,,refused,R10
+sales-order,With logistics,sales edit,,,"After handoff, sales cannot edit the order. Raise a new order for an increase.",,refused,R6
+sales-order,In production,cancel,,,Production has started. Close the order as Not completed instead.,,refused,R3
+sales-order,Receiving and shipping,cancel,,,Goods exist. Close the order as Not completed instead.,,refused,R3
+sales-order,Completed,edit,,,A completed order is frozen.,,refused,R4
+delivery-trip,Planned,issue,Issued,Warehouse keeper,issued quantity equals planned quantity,stock decreases; issue form numbered,allowed,R5
+delivery-trip,Issued,dispatch,In transit,Logistics coordinator,departure time set; the trip's invoice is Raised,the trip leaves with its invoice,allowed,R9
+delivery-trip,In transit,confirm delivery,Delivered,Logistics coordinator,arrival time set,trip becomes read-only,allowed,R4
+delivery-trip,In transit,record return,Returned,Warehouse keeper,,returned goods received back into stock; the trip's invoice is credited,allowed,
+delivery-trip,Delivered,edit times or quantities,,,A delivered trip is read-only.,,refused,R4
+delivery-trip,Planned,issue a different quantity,,,"Issue exactly the plan, or revise the plan first.",,refused,R5
+delivery-trip,Planned,edit when the order is closed,,,"A completed, cancelled or not-completed order freezes its trips.",,refused,R4
+delivery-trip,Planned,download numbered form,,,No stock has moved yet. Preview the draft form; its number is given when the goods are issued.,,refused,R8
+delivery-trip,Issued,dispatch without an invoice,,,Goods leave only with their invoice. Raise the trip's invoice first.,,refused,R9
+material-request,Open,issue first materials,Issuing,Warehouse keeper,the factory manager is assigned,stock decreases; issue form numbered,allowed,R8
+material-request,Open,cancel,Cancelled,Factory manager,nothing issued,flag only,allowed,R1
+material-request,Issuing,issue more materials,Issuing,Warehouse keeper,lines still open,stock decreases; a new issue form numbered,allowed,R8
+material-request,Issuing,issue last materials,Completed,Warehouse keeper,every line issued in full,issue form numbered,allowed,R8
+material-request,Issuing,cancel,,,"Materials have left the warehouse. Complete the request, or close the order as Not completed.",,refused,R3
+material-request,Open,download numbered form,,,No stock has moved yet. Preview the draft form; its number is given when the materials are issued.,,refused,R8
+purchase-order,Open,receive into stock,Received,Warehouse keeper,goods counted against the order,stock increases; receipt form numbered; the order counts as approved (D9),allowed,R8
+purchase-order,Received,receive more,Received,Warehouse keeper,goods counted against the open lines,stock increases; a new receipt form numbered,allowed,R8
+purchase-order,Open,cancel,Cancelled,Purchasing staff,nothing received,flag only,allowed,R1
+purchase-order,Received,close,Completed,Purchasing staff,every line received; the supplier invoice is recorded,,allowed,
+purchase-order,Received,cancel,,,Goods are in stock. Return them to the supplier instead.,,refused,R3
+purchase-order,Open,download numbered form,,,No stock has moved yet. Preview the draft form; its number is given when the goods are received.,,refused,R8
+sales-invoice,Draft,raise,Raised,Accountant,the trip is Issued; one invoice per trip,invoice number assigned; due date set from the contract's payment terms,allowed,R9
+sales-invoice,Raised,record payment,Paid,Accountant,"the trip is Delivered; a receipt allocated, equal to the balance",balance cleared,allowed,
+sales-invoice,Raised,record part payment,Partly paid,Accountant,"the trip is Delivered; a receipt allocated, less than the balance",balance due updated,allowed,
+sales-invoice,Raised,credit in part,Raised,Chief accountant,a credit note for less than the balance: a price correction or a short return,credit note issued; balance reduced,allowed,R2
+sales-invoice,Partly paid,credit in part,Partly paid,Chief accountant,a credit note for less than the balance still due,credit note issued; balance reduced,allowed,R2
+sales-invoice,Partly paid,record part payment,Partly paid,Accountant,a balance is still due,balance due updated,allowed,
+sales-invoice,Partly paid,record final payment,Paid,Accountant,receipts equal the amount due,balance cleared,allowed,
+sales-invoice,Raised,credit in full,Credited,Chief accountant,the trip is Returned,credit note issued; balance cleared,allowed,R2
+sales-invoice,Draft,raise before the trip is issued,,,Raise the invoice for goods the warehouse has issued to the trip.,,refused,R9
+sales-invoice,Raised,edit amount,,,"Correct an invoice with a credit note, never by editing it.",,refused,R2
+sale-statuses,Not invoiced,first trip invoiced,Partly invoiced,System,trips still to invoice,,allowed,
+sale-statuses,Partly invoiced,last trip invoiced,Invoiced,System,every trip has its invoice,,allowed,
+sale-statuses,Not invoiced,every trip invoiced,Invoiced,System,"a single trip, or all at once",,allowed,
+sale-statuses,Not delivered,first trip delivered,Partly delivered,System,trips still in transit,,allowed,
+sale-statuses,Partly delivered,last trip delivered,Delivered,System,every trip is Delivered or Returned,,allowed,
+sale-statuses,Not delivered,every trip delivered,Delivered,System,"a single trip, or all at once",,allowed,
+sale-statuses,Unpaid,first payment allocated,Partly paid,System,a balance is still due,,allowed,
+sale-statuses,Partly paid,last payment allocated,Paid,System,every invoice is Paid or Credited,,allowed,
+sale-statuses,Unpaid,paid in full,Paid,System,every invoice is Paid or Credited,,allowed,
+sale-statuses,Not invoiced,deliver before invoicing,,,A trip leaves only with its invoice. Raise the trip's invoice first.,,refused,R9
+voucher,Saved,post,Posted,Accountant,the entries balance,voucher locks; ledger updated,allowed,R2
+voucher,Saved,void,Voided,Accountant,,amount set to zero; number kept in the sequence,allowed,R1
+voucher,Posted,reverse,Reversed,Chief accountant,a reason is recorded,an offsetting voucher is posted; the original stays,allowed,R2
+voucher,Posted,edit,,,A posted voucher is locked. Reverse it instead.,,refused,R2
+voucher,Saved,delete,,,Nothing is ever deleted. Void it instead.,,refused,R1

@@ -1,0 +1,26 @@
+# Illustrative, from the synthetic dataset of a fictional company; not measured data.
+month_from_golive,period,rework_rate,order_error_rate
+-12,before,0.219,0.105
+-11,before,0.193,0.077
+-10,before,0.163,0.098
+-9,before,0.181,0.094
+-8,before,0.197,0.091
+-7,before,0.15,0.08
+-6,before,0.186,0.134
+-5,before,0.168,0.118
+-4,before,0.159,0.096
+-3,before,0.128,0.085
+-2,before,0.226,0.083
+-1,before,0.134,0.107
+0,after,0.191,0.096
+1,after,0.13,0.093
+2,after,0.143,0.077
+3,after,0.091,0.03
+4,after,0.072,0.039
+5,after,0.077,0.041
+6,after,0.087,0.052
+7,after,0.079,0.044
+8,after,0.054,0.019
+9,after,0.075,0.035
+10,after,0.118,0.037
+11,after,0.058,0.029

@@ -1,0 +1,7 @@
+# Text files are stored with LF; Office and image files are binary (second read F8: line-ending churn).
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.pptx binary

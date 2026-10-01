@@ -1,0 +1,242 @@
+# Illustrative, from the synthetic dataset of a fictional company; not measured data.
+month_from_golive,period,department,orders
+-12,before,Director's office,3
+-12,before,Product sales,21
+-12,before,Technical management,21
+-12,before,Production,56
+-12,before,Warehouse,35
+-12,before,Logistics and purchasing,14
+-12,before,Price control,10
+-12,before,Service sales,25
+-12,before,Accounting,6
+-12,before,Human resources,6
+-11,before,Director's office,3
+-11,before,Product sales,19
+-11,before,Technical management,26
+-11,before,Production,60
+-11,before,Warehouse,29
+-11,before,Logistics and purchasing,8
+-11,before,Price control,9
+-11,before,Service sales,29
+-11,before,Accounting,6
+-11,before,Human resources,6
+-10,before,Director's office,4
+-10,before,Product sales,22
+-10,before,Technical management,20
+-10,before,Production,60
+-10,before,Warehouse,41
+-10,before,Logistics and purchasing,12
+-10,before,Price control,7
+-10,before,Service sales,28
+-10,before,Accounting,6
+-10,before,Human resources,4
+-9,before,Director's office,4
+-9,before,Product sales,16
+-9,before,Technical management,17
+-9,before,Production,65
+-9,before,Warehouse,34
+-9,before,Logistics and purchasing,12
+-9,before,Price control,9
+-9,before,Service sales,35
+-9,before,Accounting,6
+-9,before,Human resources,4
+-8,before,Director's office,3
+-8,before,Product sales,20
+-8,before,Technical management,13
+-8,before,Production,62
+-8,before,Warehouse,40
+-8,before,Logistics and purchasing,18
+-8,before,Price control,10
+-8,before,Service sales,30
+-8,before,Accounting,7
+-8,before,Human resources,6
+-7,before,Director's office,4
+-7,before,Product sales,19
+-7,before,Technical management,23
+-7,before,Production,58
+-7,before,Warehouse,37
+-7,before,Logistics and purchasing,13
+-7,before,Price control,9
+-7,before,Service sales,40
+-7,before,Accounting,7
+-7,before,Human resources,5
+-6,before,Director's office,4
+-6,before,Product sales,23
+-6,before,Technical management,19
+-6,before,Production,59
+-6,before,Warehouse,38
+-6,before,Logistics and purchasing,9
+-6,before,Price control,9
+-6,before,Service sales,31
+-6,before,Accounting,7
+-6,before,Human resources,5
+-5,before,Director's office,4
+-5,before,Product sales,19
+-5,before,Technical management,17
+-5,before,Production,44
+-5,before,Warehouse,44
+-5,before,Logistics and purchasing,10
+-5,before,Price control,7
+-5,before,Service sales,30
+-5,before,Accounting,6
+-5,before,Human resources,5
+-4,before,Director's office,4
+-4,before,Product sales,16
+-4,before,Technical management,24
+-4,before,Production,58
+-4,before,Warehouse,39
+-4,before,Logistics and purchasing,10
+-4,before,Price control,9
+-4,before,Service sales,37
+-4,before,Accounting,6
+-4,before,Human resources,6
+-3,before,Director's office,4
+-3,before,Product sales,19
+-3,before,Technical management,27
+-3,before,Production,50
+-3,before,Warehouse,36
+-3,before,Logistics and purchasing,12
+-3,before,Price control,9
+-3,before,Service sales,34
+-3,before,Accounting,7
+-3,before,Human resources,4
+-2,before,Director's office,4
+-2,before,Product sales,17
+-2,before,Technical management,20
+-2,before,Production,68
+-2,before,Warehouse,31
+-2,before,Logistics and purchasing,13
+-2,before,Price control,9
+-2,before,Service sales,37
+-2,before,Accounting,6
+-2,before,Human resources,6
+-1,before,Director's office,4
+-1,before,Product sales,18
+-1,before,Technical management,19
+-1,before,Production,64
+-1,before,Warehouse,36
+-1,before,Logistics and purchasing,14
+-1,before,Price control,9
+-1,before,Service sales,33
+-1,before,Accounting,7
+-1,before,Human resources,6
+0,after,Director's office,4
+0,after,Product sales,21
+0,after,Technical management,21
+0,after,Production,56
+0,after,Warehouse,35
+0,after,Logistics and purchasing,11
+0,after,Price control,9
+0,after,Service sales,30
+0,after,Accounting,6
+0,after,Human resources,5
+1,after,Director's office,4
+1,after,Product sales,17
+1,after,Technical management,21
+1,after,Production,56
+1,after,Warehouse,42
+1,after,Logistics and purchasing,14
+1,after,Price control,8
+1,after,Service sales,30
+1,after,Accounting,6
+1,after,Human resources,5
+2,after,Director's office,4
+2,after,Product sales,16
+2,after,Technical management,24
+2,after,Production,54
+2,after,Warehouse,29
+2,after,Logistics and purchasing,11
+2,after,Price control,12
+2,after,Service sales,32
+2,after,Accounting,6
+2,after,Human resources,5
+3,after,Director's office,4
+3,after,Product sales,24
+3,after,Technical management,27
+3,after,Production,67
+3,after,Warehouse,34
+3,after,Logistics and purchasing,10
+3,after,Price control,9
+3,after,Service sales,21
+3,after,Accounting,8
+3,after,Human resources,5
+4,after,Director's office,4
+4,after,Product sales,16
+4,after,Technical management,18
+4,after,Production,54
+4,after,Warehouse,29
+4,after,Logistics and purchasing,12
+4,after,Price control,8
+4,after,Service sales,31
+4,after,Accounting,6
+4,after,Human resources,6
+5,after,Director's office,5
+5,after,Product sales,17
+5,after,Technical management,21
+5,after,Production,45
+5,after,Warehouse,40
+5,after,Logistics and purchasing,12
+5,after,Price control,9
+5,after,Service sales,28
+5,after,Accounting,6
+5,after,Human resources,6
+6,after,Director's office,4
+6,after,Product sales,22
+6,after,Technical management,22
+6,after,Production,72
+6,after,Warehouse,36
+6,after,Logistics and purchasing,12
+6,after,Price control,9
+6,after,Service sales,30
+6,after,Accounting,7
+6,after,Human resources,5
+7,after,Director's office,4
+7,after,Product sales,15
+7,after,Technical management,17
+7,after,Production,51
+7,after,Warehouse,32
+7,after,Logistics and purchasing,13
+7,after,Price control,10
+7,after,Service sales,24
+7,after,Accounting,6
+7,after,Human resources,5
+8,after,Director's office,4
+8,after,Product sales,22
+8,after,Technical management,21
+8,after,Production,68
+8,after,Warehouse,35
+8,after,Logistics and purchasing,12
+8,after,Price control,6
+8,after,Service sales,30
+8,after,Accounting,6
+8,after,Human resources,6
+9,after,Director's office,3
+9,after,Product sales,19
+9,after,Technical management,23
+9,after,Production,54
+9,after,Warehouse,37
+9,after,Logistics and purchasing,11
+9,after,Price control,8
+9,after,Service sales,35
+9,after,Accounting,7
+9,after,Human resources,4
+10,after,Director's office,3
+10,after,Product sales,19
+10,after,Technical management,25
+10,after,Production,63
+10,after,Warehouse,31
+10,after,Logistics and purchasing,10
+10,after,Price control,10
+10,after,Service sales,30
+10,after,Accounting,6
+10,after,Human resources,5
+11,after,Director's office,4
+11,after,Product sales,20
+11,after,Technical management,22
+11,after,Production,62
+11,after,Warehouse,35
+11,after,Logistics and purchasing,12
+11,after,Price control,11
+11,after,Service sales,27
+11,after,Accounting,6
+11,after,Human resources,6
