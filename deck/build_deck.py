@@ -144,7 +144,7 @@ SLIDES = [
                ["Order closure", "Cancel an order already in production", "Sales, with logistics"],
                ["Delivery trip", "Dispatch a trip before its invoice is raised", "Logistics"],
                ["Voucher posting", "Edit a posted voucher, or delete any voucher", "Chief accountant"]],
-     "summary": "47 scenarios in 8 stories. The build refuses a story whose error path is not in the state model.",
+     "summary": "54 scenarios in 8 stories. The build refuses a story whose error path is not in the state model.",
      "notes": "Sampled: one error path from four of the eight stories. The UAT script is generated from the stories, and the "
               "traceability matrix ties every test to a business objective."},
     {"t": "T11", "title": "Orders reached customers {{lead_change_pct}}% faster, and fewer were left unpaid",

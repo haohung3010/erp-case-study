@@ -52,3 +52,10 @@ Feature: Ship exactly what was planned, and freeze what was delivered
     When the logistics coordinator tries to dispatch the trip
     Then the dispatch is refused
     And the coordinator sees "Goods leave only with their invoice. Raise the trip's invoice first."
+
+  # Error path: delivery-trip | Delivered | edit times or quantities
+  Scenario: A delivered trip's times and quantities cannot be edited
+    Given trip "TR-118" is "Delivered"
+    When the logistics coordinator tries to change its delivered quantity to 4
+    Then the change is refused
+    And the logistics coordinator sees "A delivered trip is read-only."

@@ -156,7 +156,7 @@ Every story has Gherkin scenarios agreed before the build. **Every error path is
 | Receivables | 7 | Draft: raise before the trip is issued; Raised: edit amount | Chief accountant |
 | Sale statuses | 6 | Not invoiced: deliver before invoicing | Finance lead |
 
-The UAT script in `uat/uat-script.xlsx` is generated from the stories: 47 rows, each carrying its document, its refused move, its map steps and its decisions. The traceability matrix (W8) goes one step up, tying every test to a business objective.
+The UAT script in `uat/uat-script.xlsx` is generated from the stories: 54 rows, each carrying its document, its refused move, its map steps and its decisions. The traceability matrix (W8) goes one step up, tying every test to a business objective.
 
 # 8. The working papers
 
@@ -247,7 +247,7 @@ Overdue receivables fell from {{overdue_before_pct}}% of the open balance to {{o
 | `state/state-model.md` | The state model: diagrams, transitions, refused moves, rules, register |
 | `decisions/decision-log.md` | The seventeen decisions, each with the option rejected and who decided |
 | `process/before.bpmn`, `process/after.bpmn`, `process/periodic.bpmn` | The process maps, BPMN 2.0 with layout |
-| `stories/*.feature` | Eight user stories, 47 Gherkin scenarios |
+| `stories/*.feature` | Eight user stories, 54 Gherkin scenarios |
 | `uat/uat-script.xlsx` | The UAT script and business sign-off |
 | `docs/cutover-plan.pdf` | The one-page readiness and cutover plan |
 | `raci/raci.xlsx` | The RACI across ten departments |

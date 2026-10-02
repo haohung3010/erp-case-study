@@ -60,3 +60,20 @@ Feature: Invoice every trip, and collect each invoice on its contract's terms
     When the accountant tries to change its amount to 4,500.00
     Then the change is refused
     And the accountant sees "Correct an invoice with a credit note, never by editing it."
+
+  # Transition: sales-invoice | Raised | record payment
+  Scenario: One transfer equal to the balance pays the invoice in full
+    Given invoice "INV-403" for 2,500.00 is "Raised"
+    And its trip is confirmed delivered
+    When customer "C-104" transfers 2,500.00 and the receipt is allocated
+    Then invoice "INV-403" shows the state "Paid"
+    And its balance due is 0.00
+
+  # Transition: sales-invoice | Raised | credit in full
+  Scenario: Goods returned in full are credited in full, not deleted
+    Given invoice "INV-404" for 1,800.00 is "Raised"
+    And its trip shows the state "Returned"
+    When the chief accountant issues a credit note for 1,800.00 against it, with the reason "goods returned"
+    Then invoice "INV-404" shows the state "Credited"
+    And its balance due is 0.00
+    And invoice "INV-404" can still be found and read

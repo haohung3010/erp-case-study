@@ -12,66 +12,73 @@ Each row is one UAT test. Read left to right: why it exists, which decision it e
 | O2, O3 | UAT-04 | delivery-trip | The warehouse cannot issue a different quantity | D14, D15, D16 | R5 | refused in Planned: issue a different quantity |
 | O2, O3 | UAT-05 | delivery-trip | A numbered issue form cannot exist before the goods are issued | D14, D15, D16 | R8 | refused in Planned: download numbered form |
 | O2, O3 | UAT-06 | delivery-trip | A trip cannot leave without its invoice | D14, D15, D16 | R9 | refused in Issued: dispatch without an invoice |
-| O2 | UAT-07 | material-request | A numbered issue form cannot exist before the materials are issued | D6, D15 | R8 | refused in Open: download numbered form |
-| O2 | UAT-08 | material-request | The first issue starts the request | D6, D15 | R8 | Open: issue first materials, to Issuing |
-| O2 | UAT-09 | material-request | A second issue gets its own form | D6, D15 | R8 | Issuing: issue more materials, to Issuing |
-| O2 | UAT-10 | material-request | The last issue completes the request | D6, D15 | R8 | Issuing: issue last materials, to Completed |
-| O2 | UAT-11 | material-request | A request that has issued materials cannot be cancelled | D6, D15 | R3 | refused in Issuing: cancel |
-| O2 | UAT-12 | material-request | A request with nothing issued can be cancelled, and is kept | D6, D15 | R1 | Open: cancel, to Cancelled |
-| O1, O2 | UAT-13 | order-closure | An open order can be cancelled | D6, D10 | R1 | Open: cancel, to Cancelled |
-| O1, O2 | UAT-14 | order-closure | An order in production closes as not completed | D6, D10 | R3 | In production: close as not completed, to Not completed |
-| O1, O2 | UAT-15 | order-closure | Nothing is removed when an order closes | D6, D10 | R1 | in state: Cancelled |
-| O1, O2 | UAT-16 | order-closure | An order in production cannot be cancelled | D6, D10 | R3 | refused in In production: cancel |
-| O1, O3 | UAT-17 | order-lifecycle | A saved request does not start fulfilment | D5, D7, D17 | none | in state: Request |
-| O1, O3 | UAT-18 | order-lifecycle | Confirming the request makes it an order | D5, D7, D17 | none | Request: confirm order, to Open |
-| O1, O3 | UAT-19 | order-lifecycle | A customer on credit hold gets no new order | D5, D7, D17 | R10 | refused in Request: confirm on credit hold |
-| O1, O3 | UAT-20 | order-lifecycle | The chief accountant releases one order, with a reason | D5, D7, D17 | R10 | Request: confirm with credit release, to Open |
-| O1, O3 | UAT-21 | order-lifecycle | Sending the order to logistics locks it for sales | D5, D7, D17 | R6 | Open: send to logistics, to With logistics |
-| O1, O3 | UAT-22 | order-lifecycle | Sales cannot edit an order that logistics has | D5, D7, D17 | R6 | refused in With logistics: sales edit |
-| O2, O5 | UAT-23 | purchase-order | A new purchase order is open at once | D9, D15 | none | in state: Open |
-| O2, O5 | UAT-24 | purchase-order | The warehouse keeper reviews a draft receipt form before receiving | D9, D15 | R8 | in state: Open |
-| O2, O5 | UAT-25 | purchase-order | A numbered receipt form cannot exist before the goods are received | D9, D15 | R8 | refused in Open: download numbered form |
-| O2, O5 | UAT-26 | purchase-order | Receiving the goods counts as approval | D9, D15 | R8 | Open: receive into stock, to Received |
-| O2, O5 | UAT-27 | purchase-order | A second delivery gets its own receipt form | D9, D15 | R8 | Received: receive more, to Received |
-| O2, O5 | UAT-28 | purchase-order | The order closes when every line is received and invoiced | D9, D15 | none | Received: close, to Completed |
-| O2, O5 | UAT-29 | purchase-order | A received purchase order cannot be cancelled | D9, D15 | R3 | refused in Received: cancel |
-| O3, O4 | UAT-30 | receivables | The invoice is raised for the issued trip, with its due date from the contract | D16, D17 | R9 | Draft: raise, to Raised |
-| O3, O4 | UAT-31 | receivables | A trip that has not been issued cannot be invoiced | D16, D17 | R9 | refused in Draft: raise before the trip is issued |
-| O3, O4 | UAT-32 | receivables | One transfer pays the oldest invoice first | D16, D17 | none | Raised: record part payment, to Partly paid |
-| O3, O4 | UAT-33 | receivables | The last payment clears the invoice | D16, D17 | none | Partly paid: record final payment, to Paid |
-| O3, O4 | UAT-34 | receivables | An invoice past its due date shows in the ageing view and holds the contract | D16, D17 | R10 | in state: Raised |
-| O3, O4 | UAT-35 | receivables | A price correction is a part credit note, not an edit | D16, D17 | R2 | Raised: credit in part, to Raised |
-| O3, O4 | UAT-36 | receivables | An invoice amount cannot be edited | D16, D17 | R2 | refused in Raised: edit amount |
-| O1, O4 | UAT-37 | sale-statuses | A new sale starts with all three statuses open | D8, D16, D17 | none | in state: Not invoiced, Not delivered, Unpaid |
-| O1, O4 | UAT-38 | sale-statuses | The first trip's invoice makes the sale partly invoiced | D8, D16, D17 | none | Not invoiced: first trip invoiced, to Partly invoiced |
-| O1, O4 | UAT-39 | sale-statuses | Delivery never runs ahead of invoicing | D8, D16, D17 | none | Not delivered: first trip delivered, to Partly delivered |
-| O1, O4 | UAT-40 | sale-statuses | A delivered sale waits on its credit terms | D8, D16, D17 | R10 | in state: Invoiced, Delivered, Unpaid |
-| O1, O4 | UAT-41 | sale-statuses | A returned trip does not leave the sale waiting | D8, D16, D17 | none | Partly delivered: last trip delivered, to Delivered |
-| O1, O4 | UAT-42 | sale-statuses | A sale cannot be delivered before it is invoiced | D8, D16, D17 | R9 | refused in Not invoiced: deliver before invoicing |
-| O4 | UAT-43 | voucher-posting | A saved voucher does not reach the ledger | D10 | R2 | in state: Saved |
-| O4 | UAT-44 | voucher-posting | Posting locks the voucher and updates the ledger | D10 | R2 | Saved: post, to Posted |
-| O4 | UAT-45 | voucher-posting | A posted voucher is corrected by a reversal | D10 | R2 | Posted: reverse, to Reversed |
-| O4 | UAT-46 | voucher-posting | A posted voucher cannot be edited | D10 | R2 | refused in Posted: edit |
-| O4 | UAT-47 | voucher-posting | A saved voucher cannot be deleted | D10 | R1 | refused in Saved: delete |
+| O2, O3 | UAT-07 | delivery-trip | A delivered trip's times and quantities cannot be edited | D14, D15, D16 | R4 | refused in Delivered: edit times or quantities |
+| O2 | UAT-08 | material-request | A numbered issue form cannot exist before the materials are issued | D6, D15 | R8 | refused in Open: download numbered form |
+| O2 | UAT-09 | material-request | The first issue starts the request | D6, D15 | R8 | Open: issue first materials, to Issuing |
+| O2 | UAT-10 | material-request | A second issue gets its own form | D6, D15 | R8 | Issuing: issue more materials, to Issuing |
+| O2 | UAT-11 | material-request | The last issue completes the request | D6, D15 | R8 | Issuing: issue last materials, to Completed |
+| O2 | UAT-12 | material-request | A request that has issued materials cannot be cancelled | D6, D15 | R3 | refused in Issuing: cancel |
+| O2 | UAT-13 | material-request | A request with nothing issued can be cancelled, and is kept | D6, D15 | R1 | Open: cancel, to Cancelled |
+| O1, O2 | UAT-14 | order-closure | An open order can be cancelled | D6, D10 | R1 | Open: cancel, to Cancelled |
+| O1, O2 | UAT-15 | order-closure | An order in production closes as not completed | D6, D10 | R3 | In production: close as not completed, to Not completed |
+| O1, O2 | UAT-16 | order-closure | Nothing is removed when an order closes | D6, D10 | R1 | in state: Cancelled |
+| O1, O2 | UAT-17 | order-closure | An order in production cannot be cancelled | D6, D10 | R3 | refused in In production: cancel |
+| O1, O2 | UAT-18 | order-closure | An order with goods already received closes as not completed | D6, D10 | R3 | Receiving and shipping: close as not completed, to Not completed |
+| O1, O2 | UAT-19 | order-closure | An order with goods already received cannot be cancelled | D6, D10 | R3 | refused in Receiving and shipping: cancel |
+| O1, O2 | UAT-20 | order-closure | A completed order cannot be edited | D6, D10 | R4 | refused in Completed: edit |
+| O1, O3 | UAT-21 | order-lifecycle | A saved request does not start fulfilment | D5, D7, D17 | none | in state: Request |
+| O1, O3 | UAT-22 | order-lifecycle | Confirming the request makes it an order | D5, D7, D17 | none | Request: confirm order, to Open |
+| O1, O3 | UAT-23 | order-lifecycle | A customer on credit hold gets no new order | D5, D7, D17 | R10 | refused in Request: confirm on credit hold |
+| O1, O3 | UAT-24 | order-lifecycle | The chief accountant releases one order, with a reason | D5, D7, D17 | R10 | Request: confirm with credit release, to Open |
+| O1, O3 | UAT-25 | order-lifecycle | Sending the order to logistics locks it for sales | D5, D7, D17 | R6 | Open: send to logistics, to With logistics |
+| O1, O3 | UAT-26 | order-lifecycle | Sales cannot edit an order that logistics has | D5, D7, D17 | R6 | refused in With logistics: sales edit |
+| O2, O5 | UAT-27 | purchase-order | A new purchase order is open at once | D9, D15 | none | in state: Open |
+| O2, O5 | UAT-28 | purchase-order | The warehouse keeper reviews a draft receipt form before receiving | D9, D15 | R8 | in state: Open |
+| O2, O5 | UAT-29 | purchase-order | A numbered receipt form cannot exist before the goods are received | D9, D15 | R8 | refused in Open: download numbered form |
+| O2, O5 | UAT-30 | purchase-order | Receiving the goods counts as approval | D9, D15 | R8 | Open: receive into stock, to Received |
+| O2, O5 | UAT-31 | purchase-order | A second delivery gets its own receipt form | D9, D15 | R8 | Received: receive more, to Received |
+| O2, O5 | UAT-32 | purchase-order | The order closes when every line is received and invoiced | D9, D15 | none | Received: close, to Completed |
+| O2, O5 | UAT-33 | purchase-order | A received purchase order cannot be cancelled | D9, D15 | R3 | refused in Received: cancel |
+| O3, O4 | UAT-34 | receivables | The invoice is raised for the issued trip, with its due date from the contract | D16, D17 | R9 | Draft: raise, to Raised |
+| O3, O4 | UAT-35 | receivables | A trip that has not been issued cannot be invoiced | D16, D17 | R9 | refused in Draft: raise before the trip is issued |
+| O3, O4 | UAT-36 | receivables | One transfer pays the oldest invoice first | D16, D17 | none | Raised: record part payment, to Partly paid |
+| O3, O4 | UAT-37 | receivables | The last payment clears the invoice | D16, D17 | none | Partly paid: record final payment, to Paid |
+| O3, O4 | UAT-38 | receivables | An invoice past its due date shows in the ageing view and holds the contract | D16, D17 | R10 | in state: Raised |
+| O3, O4 | UAT-39 | receivables | A price correction is a part credit note, not an edit | D16, D17 | R2 | Raised: credit in part, to Raised |
+| O3, O4 | UAT-40 | receivables | An invoice amount cannot be edited | D16, D17 | R2 | refused in Raised: edit amount |
+| O3, O4 | UAT-41 | receivables | One transfer equal to the balance pays the invoice in full | D16, D17 | none | Raised: record payment, to Paid |
+| O3, O4 | UAT-42 | receivables | Goods returned in full are credited in full, not deleted | D16, D17 | R2 | Raised: credit in full, to Credited |
+| O1, O4 | UAT-43 | sale-statuses | A new sale starts with all three statuses open | D8, D16, D17 | none | in state: Not invoiced, Not delivered, Unpaid |
+| O1, O4 | UAT-44 | sale-statuses | The first trip's invoice makes the sale partly invoiced | D8, D16, D17 | none | Not invoiced: first trip invoiced, to Partly invoiced |
+| O1, O4 | UAT-45 | sale-statuses | Delivery never runs ahead of invoicing | D8, D16, D17 | none | Not delivered: first trip delivered, to Partly delivered |
+| O1, O4 | UAT-46 | sale-statuses | A delivered sale waits on its credit terms | D8, D16, D17 | R10 | in state: Invoiced, Delivered, Unpaid |
+| O1, O4 | UAT-47 | sale-statuses | A returned trip does not leave the sale waiting | D8, D16, D17 | none | Partly delivered: last trip delivered, to Delivered |
+| O1, O4 | UAT-48 | sale-statuses | A sale cannot be delivered before it is invoiced | D8, D16, D17 | R9 | refused in Not invoiced: deliver before invoicing |
+| O4 | UAT-49 | voucher-posting | A saved voucher does not reach the ledger | D10 | R2 | in state: Saved |
+| O4 | UAT-50 | voucher-posting | Posting locks the voucher and updates the ledger | D10 | R2 | Saved: post, to Posted |
+| O4 | UAT-51 | voucher-posting | A posted voucher is corrected by a reversal | D10 | R2 | Posted: reverse, to Reversed |
+| O4 | UAT-52 | voucher-posting | A posted voucher cannot be edited | D10 | R2 | refused in Posted: edit |
+| O4 | UAT-53 | voucher-posting | A saved voucher cannot be deleted | D10 | R1 | refused in Saved: delete |
+| O4 | UAT-54 | voucher-posting | A saved voucher that is not needed is voided and keeps its number | D10 | R1 | Saved: void, to Voided |
 
 ## Coverage by objective
 
 | Objective | UAT rows | Error paths |
 |---|---|---|
-| O1 Anyone who needs it can see where an order is | 16 | 4 |
-| O2 Stock in the system matches the shelves | 23 | 8 |
-| O3 Orders are delivered faster, and collected on their terms | 19 | 7 |
-| O4 The ledger can be audited | 18 | 5 |
+| O1 Anyone who needs it can see where an order is | 19 | 6 |
+| O2 Stock in the system matches the shelves | 27 | 11 |
+| O3 Orders are delivered faster, and collected on their terms | 22 | 8 |
+| O4 The ledger can be audited | 21 | 5 |
 | O5 Purchasing is not slowed by a second approval | 7 | 2 |
 
 ## Coverage by rule
 
 | Rule | UAT rows |
 |---|---|
-| R1 | UAT-12, UAT-13, UAT-15, UAT-47 |
-| R2 | UAT-35, UAT-36, UAT-43, UAT-44, UAT-45, UAT-46 |
-| R3 | UAT-11, UAT-14, UAT-16, UAT-29 |
-| R4 | UAT-03 |
+| R1 | UAT-13, UAT-14, UAT-16, UAT-53, UAT-54 |
+| R2 | UAT-39, UAT-40, UAT-42, UAT-49, UAT-50, UAT-51, UAT-52 |
+| R3 | UAT-12, UAT-15, UAT-17, UAT-18, UAT-19, UAT-33 |
+| R4 | UAT-03, UAT-07, UAT-20 |
 | R5 | UAT-01, UAT-04 |
-| R6 | UAT-21, UAT-22 |
+| R6 | UAT-25, UAT-26 |
 | R7 | **none**: enforced by configuration, tested in the role checks (W5 N5), not by a story |

@@ -38,10 +38,11 @@ The role had a boundary: buyers, finance and the sales and logistics leads made 
 | Deliverable | File |
 |---|---|
 | Case-study report | [docs/case-study-report.pdf](docs/case-study-report.pdf) |
+| **Software requirements specification**: 79 requirements, each with a statement, rationale, acceptance criteria and verification method | [srs/srs.md](srs/srs.md) |
 | **State model**: diagrams, transitions, refused moves, rules | [state/state-model.md](state/state-model.md) |
 | Decision log, seventeen decisions | [decisions/decision-log.md](decisions/decision-log.md) |
 | Process maps, before and after, and the periodic routines (BPMN 2.0) | [process/before.bpmn](process/before.bpmn), [process/after.bpmn](process/after.bpmn), [process/periodic.bpmn](process/periodic.bpmn) |
-| Eight user stories, 47 Gherkin scenarios | [stories/](stories/) |
+| Eight user stories, 54 Gherkin scenarios | [stories/](stories/) |
 | UAT script with traceability and business sign-off | [uat/uat-script.xlsx](uat/uat-script.xlsx) |
 | Readiness and cutover plan, one page | [docs/cutover-plan.pdf](docs/cutover-plan.pdf) |
 | RACI across ten departments | [raci/raci.xlsx](raci/raci.xlsx) |
@@ -73,6 +74,7 @@ python process/build_maps.py
 python uat/build_uat.py .
 python raci/build_raci.py .
 python working-papers/build_rtm.py .
+python srs/build_srs.py .
 python docs/figures.py .
 python scripts/build_docs.py .
 python deck/build_deck.py .

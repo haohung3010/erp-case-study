@@ -41,3 +41,11 @@ Feature: Save, post and correct accounting vouchers without ever deleting one
     When the accountant tries to delete it
     Then the deletion is refused
     And the accountant sees "Nothing is ever deleted. Void it instead."
+
+  # Transition: voucher | Saved | void
+  Scenario: A saved voucher that is not needed is voided and keeps its number
+    Given payment voucher "PV-0312" is "Saved"
+    When the accountant voids it
+    Then payment voucher "PV-0312" shows the state "Voided"
+    And its amount is 0.00
+    And its number stays in the sequence
